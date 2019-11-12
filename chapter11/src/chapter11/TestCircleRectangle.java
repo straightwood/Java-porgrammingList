@@ -14,7 +14,6 @@ public class TestCircleRectangle {
 		System.out.println("\nA rectangle " + rectangle.toString());
 		System.out.println("The area is " + rectangle.getArea());
 		System.out.println("The diameter is " + rectangle.getPerimeter());
-
 	}
 
 }
