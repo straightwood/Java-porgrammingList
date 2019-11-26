@@ -9,29 +9,46 @@ public class TextBox {
 		int flag=0;
 		ArrayList<Integer>arr = new ArrayList<>();
 		ArrayList<Integer>box = new ArrayList<>();
-		ArrayList<String>s = new ArrayList<>();
+		//ArrayList<String>s = new ArrayList<>();
 		
+		//将物件重量读入数组
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter number of object: ");
 		int m = input.nextInt();
+		System.out.print("Enter the weights of objects: ");
 		for(int i=0;i<m;i++) {
 			int tem=input.nextInt();
 			arr.add(tem);
-			box.add(10);
 		}
+		
+		//开m*2的二维数组 第一个元素放剩余空间 第二个元素放字符串
+		String[][] boxes = new String[m][3];
 		for(int i=0;i<m;i++) {
-			for(int j=0;j<m;j++) {
-				if(arr.get(i)<box.get(j)) {
-					s.add(String.valueOf(arr.get(i)));
-					box.set(j, box.get(j)-arr.get(i));
+			boxes[i][0]="10";
+			boxes[i][1]="";
+		}
+
+		//依次读入物品重量
+		for(int j=0;j<m;j++) {
+			//System.out.print(j+"-");
+			for(int i=0;i<m;i++) {
+				if(arr.get(j)<Integer.parseInt(boxes[i][0])) {
+					boxes[i][1]+=" "+arr.get(j).toString();
+					boxes[i][0]=Integer.toString(Integer.parseInt(boxes[i][0])-arr.get(j));
+					//System.out.println(i+": "+boxes[i][0]+"+"+boxes[i][1]);
 					break;
-					
 				}
 			}
 		}
-		for(int i=0;i<arr.size();i++) {
-			System.out.println(s.get(i));
+		
+		//打印结果
+		for(int i=0;i<m;i++) {
+			if(boxes[i][0]!="10") {
+				System.out.println("Container "+ (i+1) + " contains objects with weight"+boxes[i][1]);
+			}
+			
 		}
+
 
 	}
 
